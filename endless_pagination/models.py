@@ -169,7 +169,10 @@ class PageList(utils.UnicodeMixin):
                     pages.append(self.last_as_arrow())
                 else:
                     pages.append(self[item])
-            context = RequestContext(self._request, {'pages': pages})
+            context = RequestContext(
+                    self._request,
+                    {'pages': pages, 'page_info': self}
+                    )
             return loader.render_to_string('endless/show_pages.html', context)
         return ''
 
